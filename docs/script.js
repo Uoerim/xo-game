@@ -21,17 +21,17 @@ for (const element of document.querySelectorAll(".play-area")) {
             if (!xMoves.includes(noOfSquare) && !oMoves.includes(noOfSquare)) {
                 emptySpaces--
                 if (emptySpaces == 0) {
-                    $(".win-alert").css("margin-top", "0");
-                    $(".alert > h1").html("DRAW");
+                    document.querySelector(".win-alert").style.marginTop = "0"
+                    document.querySelector(".alert > h1").innerHTML = "DRAW"
                 }
                 turn = "o"
                 this.insertAdjacentHTML('beforeend', '<div class="x"><div class="cross"></div><div class="cross"></div></div>')
                 xMoves.push(Array.prototype.indexOf.call(this.parentNode.children, e.target))
                 for (let i = 0; i < winConditions.length; i++) {
                     if(xMoves.includes(winConditions[i][0]) && xMoves.includes(winConditions[i][1]) && xMoves.includes(winConditions[i][2])){
-                        $(".win-alert").css("margin-top", "0");
-                        $(".alert > h1").html("X HAS WON");
-                        $(".xscore > p").html(+$(".xscore > p").html() + 1);
+                        document.querySelector(".win-alert").style.marginTop = "0"
+                        document.querySelector(".alert > h1").innerHTML = "X HAS WON"
+                        document.querySelector(".xscore > p").innerHTML = +document.querySelector(".xscore > p").innerHTML + 1
                     }
                 }
             }
@@ -40,17 +40,17 @@ for (const element of document.querySelectorAll(".play-area")) {
             if (!xMoves.includes(noOfSquare) && !oMoves.includes(noOfSquare)) {
                 emptySpaces--
                 if (emptySpaces == 0) {
-                    $(".win-alert").css("margin-top", "0");
-                    $(".alert > h1").html("DRAW");
+                    document.querySelector(".win-alert").style.marginTop = "0"
+                    document.querySelector(".alert > h1").innerHTML = "DRAW"
                 }
                 turn = "x"
                 this.insertAdjacentHTML('beforeend', '<div class="o"><div class="circle"></div></div>')
                 oMoves.push(Array.prototype.indexOf.call(this.parentNode.children, e.target))
                 for (let i = 0; i < winConditions.length; i++) {
                     if(oMoves.includes(winConditions[i][0]) && oMoves.includes(winConditions[i][1]) && oMoves.includes(winConditions[i][2])){
-                        $(".win-alert").css("margin-top", "0");
-                        $(".alert > h1").html("O HAS WON");
-                        $(".oscore > p").html(+$(".oscore > p").html() + 1);
+                        document.querySelector(".win-alert").style.marginTop = "0"
+                        document.querySelector(".alert > h1").innerHTML = "O HAS WON"
+                        document.querySelector(".oscore > p").innerHTML = +document.querySelector(".oscore > p").innerHTML + 1
                     }
                 }
             }
@@ -60,22 +60,30 @@ for (const element of document.querySelectorAll(".play-area")) {
 }
 
 document.querySelector(".play-again-btn").onclick = function () { 
-    $(".win-alert").css("margin-top", "-100vh");
-    $(".game-container .x").remove();
-    $(".game-container .o").remove();
+    document.querySelector(".win-alert").style.marginTop = "-100vh"
+    for (const element of document.querySelectorAll(".game-container .x")) {
+        element.remove()
+    }
+    for (const element of document.querySelectorAll(".game-container .o")) {
+        element.remove()
+    }
     turn = "x"
     emptySpaces = "9"
     xMoves = []
     oMoves = []
 }
 document.querySelector(".reset-score-btn").onclick = function () { 
-    $(".win-alert").css("margin-top", "-100vh");
-    $(".game-container .x").remove();
-    $(".game-container .o").remove();
+    document.querySelectorAll(".win-alert").style.marginTop = "-100vh"
+    for (const element of document.querySelectorAll(".game-container .x")) {
+        element.remove()
+    }
+    for (const element of document.querySelectorAll(".game-container .o")) {
+        element.remove()
+    }
     turn = "x"
     emptySpaces = "9"
     xMoves = []
     oMoves = []
-    $(".xscore > p").html(0);
-    $(".oscore > p").html(0);
+    document.querySelector(".xscore > p").innerHTML = 0
+    document.querySelector(".oscore > p").innerHTML = 0
 }
